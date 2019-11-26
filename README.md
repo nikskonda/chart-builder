@@ -1,7 +1,6 @@
 # chart-builder
 App for building charts from exel docs.
 
-
-npm install
-
-npm start
+To start: 
+  npm install
+  npm start
