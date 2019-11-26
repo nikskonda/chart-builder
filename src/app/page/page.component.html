@@ -1,0 +1,36 @@
+<div *ngIf="service.getData().length > 0" >
+    Выберите вкладки:
+    <ul>
+      <li *ngFor="let shift of service.getData()">
+        <span>
+          <input type="checkbox" [checked]="shift.checkbox" (change)="changeInUsing(shift.id)"/>
+          {{shift.name}}
+        </span>
+      </li>
+    </ul>
+
+    <linechart *ngIf="this.oX &&  this.oY" [data]="this.chartData" [type]="this.type"></linechart>
+    <div *ngIf="usingShifts.length > 0">
+      Oси:
+      <div>
+        oX:<br/>
+        <app-asix-selector [asixes]="this.service.getDisplayedColumns(1)" (selected)="setOx($event)"></app-asix-selector>
+      </div>
+      <div>
+        oY:<br/>
+        <app-asix-selector [asixes]="this.service.getDisplayedColumns(1)" (selected)="setOy($event)"></app-asix-selector>
+      </div>
+      <div>
+          Тип:<app-asix-selector [asixes]="['line', 'spline']" [value]="'line'" (selected)="setType($event)"></app-asix-selector>
+        </div>
+    </div>
+
+    <br/>
+    <div *ngIf="this.usingShifts.length > 0">
+        Таблицы:
+        <div *ngFor="let shiftId of usingShifts" >
+            <app-table-data [shiftId]="shiftId"></app-table-data>
+        </div>
+    </div>
+
+</div>

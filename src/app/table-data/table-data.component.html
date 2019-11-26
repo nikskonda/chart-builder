@@ -1,0 +1,11 @@
+{{this.service.findById(shiftId).name}}
+<button (click)="show = !show">{{show ? 'скрыть' : 'показать'}}</button>
+
+<table mat-table *ngIf="show" [dataSource]="data" class="mat-elevation-z8">
+  <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column}}">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>{{column}}</th>
+    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
